@@ -2,6 +2,8 @@
 //la base de donnée des
 
 const db = require('./platsModel');
+const db = require('./recipesModel');
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);

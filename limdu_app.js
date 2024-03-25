@@ -1,6 +1,8 @@
 var limdu = require('limdu');
 const prompt = require("prompt-sync")({ sigint: true });
 const db = require('./platsModel');
+const db = require('./recipesModel');
+
 
 (async function() {
 
