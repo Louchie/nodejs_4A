@@ -1,4 +1,5 @@
-// App.js - Utilisation des opérations CRUD avec Knex, initialisation de la BDD
+// App.js - Utilisation des opérations CRUD avec Knex, initialisation de la BDD 
+//la base de donnée des recettes
 
 const db = require('./boissonModel');
 
