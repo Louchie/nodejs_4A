@@ -1,10 +1,10 @@
 var limdu = require('limdu');
 const prompt = require("prompt-sync")({ sigint: true });
-const db = require('./boissonModel');
+const db = require('./platsModel');
 
 (async function() {
 
-	const boissons = await db.getAllBoissons()
+	const boissons = await db.getAllPlats()
 	console.log(boissons)
 	// First, define our base classifier type (a multi-label classifier based on winnow):
 	var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {
