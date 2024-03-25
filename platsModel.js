@@ -17,7 +17,7 @@ async function getPlatById(id) {
 }
 
 // Update
-async function updateBoisson(id, type_lunch) {
+async function updatePlat(id, type_lunch) {
   return await knex('plats').where({ id }).update({ type_lunch });
 }
 
@@ -30,7 +30,7 @@ module.exports = {
   createPlat,
   getAllPlats,
   getPlatById,
-  updateBoisson,
+  updatePlat,
   deletPlat
 };
 
