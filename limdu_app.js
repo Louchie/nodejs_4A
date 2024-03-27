@@ -38,7 +38,7 @@ const db_recipes = require('./recipesModel');
 
 
 	// Initialize a classifier with the base classifier type and the feature extractor:
-	var intentClassifierAccept = new limdu.classifiers.EnhancedClassifier({
+	var intentClassifiertaste = new limdu.classifiers.EnhancedClassifier({
 		classifierType: TextClassifier,
 		featureExtractor: WordExtractor
 	});
