@@ -66,55 +66,48 @@ const db_recipes = require('./recipesModel');
 		{input: "6", output: 6},
 		{input: "7", output: 8},
 		{input: "8", output: 8},
-		{input: 1, output: 2},
-		{input: 2, output: 2},
-		{input: 3, output: 4},
-		{input: 4, output: 4},
-		{input: 5, output: 6},
-		{input: 6, output: 6},
-		{input: 7, output: 8},
-		{input: 8, output: 8},
 	]);
 
 
 
 
 	console.log('Bonjour')
-	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); predicted_response = intentClassifier.classify(type_lunch_want);
+	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); 
+	predicted_response = intentClassifier.classify(type_lunch_want);
 	let current_plat = null
 
 	// console.log('predicted_response', predicted_response)
 	for (plat of plats) {
 		if (plat.name == predicted_response[0]) {
 			console.log("Le type de repas est", repas['type_lunch'])
-			current_plat = plat 
+			current_plat = plat
 			break
 		}
 	}
 
-	const yesno = prompt(`Souhaitez-vous payer votre ${current_plat.name} ?`);
-	predicted_response = intentClassifierAccept.classify(yesno);
-	if (predicted_response[0] == 'non') {
-		console.log('Merci et à la prochaine!')
-	}
+	// const yesno = prompt(`Souhaitez-vous payer votre ${current_plat.name} ?`);
+	// predicted_response = intentClassifierAccept.classify(yesno);
+	// if (predicted_response[0] == 'non') {
+	// 	console.log('Merci et à la prochaine!')
+	// }
 
-	if (predicted_response[0] == 'oui') {
+	// if (predicted_response[0] == 'oui') {
 
-		const want_qty = prompt(`Avez-vous besoin de combien de ${current_plat.name} ?`);
-		console.log(`Vous voulez ${Number(want_qty)} ${current_plat.name}(s)`)
-		plat_from_db = await db.getplatById(current_plat.id)
-		if ((plat_from_db.quantity <= 0)) {
-			console.log(`Nous n'avons plus de ${plat_from_db.name}!`)
-		} else if ((plat_from_db.quantity - Number(want_qty)) <= 0) {
-			console.log(`Nous n'avons pas suffisamment de ${plat_from_db.name} pour vous servir!`)
-		} else {
-			db.updatePlat(current_plat.id, plat_from_db.quantity - Number(want_qty))
-			if (Number(want_qty) == 1) {
-				console.log('Ok merci prennez votre plat!')
-			} else {
-				console.log('Ok merci prennez vos plats!')
-			}
-		}
-	}
+	// 	const want_qty = prompt(`Avez-vous besoin de combien de ${current_plat.name} ?`);
+	// 	console.log(`Vous voulez ${Number(want_qty)} ${current_plat.name}(s)`)
+	// 	plat_from_db = await db.getplatById(current_plat.id)
+	// 	if ((plat_from_db.quantity <= 0)) {
+	// 		console.log(`Nous n'avons plus de ${plat_from_db.name}!`)
+	// 	} else if ((plat_from_db.quantity - Number(want_qty)) <= 0) {
+	// 		console.log(`Nous n'avons pas suffisamment de ${plat_from_db.name} pour vous servir!`)
+	// 	} else {
+	// 		db.updatePlat(current_plat.id, plat_from_db.quantity - Number(want_qty))
+	// 		if (Number(want_qty) == 1) {
+	// 			console.log('Ok merci prennez votre plat!')
+	// 		} else {
+	// 			console.log('Ok merci prennez vos plats!')
+	// 		}
+	// 	}
+	// }
 
 })()
