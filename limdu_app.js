@@ -38,13 +38,13 @@ const db_recipes = require('./recipesModel');
 
 
 	// Initialize a classifier with the base classifier type and the feature extractor:
-	var intentClassifierAccept = new limdu.classifiers.EnhancedClassifier({
+	var intentClassifiertaste = new limdu.classifiers.EnhancedClassifier({
 		classifierType: TextClassifier,
 		featureExtractor: WordExtractor
 	});
 
 	// Train and test:
-	intentClassifierAccept.trainBatch([
+	intentClassifiertaste.trainBatch([
 		{input: "je veux manger sucreé", output: "sucré"},
 		{input: "je veux manger salé", output: "salé"},
 	]);
@@ -57,7 +57,7 @@ const db_recipes = require('./recipesModel');
 	});
 
 	// Train and test:
-	intentClassifierAccept.trainBatch([
+	intentClassifierAcceptnumber.trainBatch([
 		{input: "1", output: 2},
 		{input: "2", output: 2},
 		{input: "3", output: 4},
@@ -70,13 +70,11 @@ const db_recipes = require('./recipesModel');
 
 
 
-
 	console.log('Bonjour')
 	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); 
 	predicted_response = intentClassifier.classify(type_lunch_want);
 	let current_plat = null
-
-	// console.log('predicted_response', predicted_response)
+		// console.log('predicted_response', predicted_response)
 	for (plat of plats) {
 		if (plat.name == predicted_response[0]) {
 			console.log("Le type de repas est", repas['type_lunch'])
@@ -84,30 +82,55 @@ const db_recipes = require('./recipesModel');
 			break
 		}
 	}
+	const type_lunch_taste = prompt("Voulez-vous mangez sucré ou salée?"); predicted_response = intentClassifiertaste.classify(type_lunch_taste);
+	let current_plat_taste = null
+	for (plat of plats) {
+		if (plat.name == predicted_response[0]) {
+			console.log("Le type de repas est", repas['type_lunch'])
+			current_plat = plat 
+			break
+		}
+	}
+	const type_lunch_number = prompt("Combien seriez-vous à manger ce plat ?"); predicted_response = intentClassifiernumber.classify(type_lunch_number);
+	let current_plat_number = null
+	for (plat of plats) {
+		if (plat.name == predicted_response[0]) {
+			console.log("Le type de repas est", repas['type_lunch'])
+			current_plat = plat 
+			break
+		}
+	}
 
-	// const yesno = prompt(`Souhaitez-vous payer votre ${current_plat.name} ?`);
-	// predicted_response = intentClassifierAccept.classify(yesno);
-	// if (predicted_response[0] == 'non') {
-	// 	console.log('Merci et à la prochaine!')
-	// }
 
-	// if (predicted_response[0] == 'oui') {
 
-	// 	const want_qty = prompt(`Avez-vous besoin de combien de ${current_plat.name} ?`);
-	// 	console.log(`Vous voulez ${Number(want_qty)} ${current_plat.name}(s)`)
-	// 	plat_from_db = await db.getplatById(current_plat.id)
-	// 	if ((plat_from_db.quantity <= 0)) {
-	// 		console.log(`Nous n'avons plus de ${plat_from_db.name}!`)
-	// 	} else if ((plat_from_db.quantity - Number(want_qty)) <= 0) {
-	// 		console.log(`Nous n'avons pas suffisamment de ${plat_from_db.name} pour vous servir!`)
-	// 	} else {
-	// 		db.updatePlat(current_plat.id, plat_from_db.quantity - Number(want_qty))
-	// 		if (Number(want_qty) == 1) {
-	// 			console.log('Ok merci prennez votre plat!')
-	// 		} else {
-	// 			console.log('Ok merci prennez vos plats!')
-	// 		}
-	// 	}
-	// }
+
+	/*
+
+
+	const yesno = prompt(`Voulez-vous mangez sucré ou salée ${current_plat.name} ?`);
+	predicted_response = intentClassifierAccept.classify(yesno);
+	if (predicted_response[0] == 'non') {
+		console.log('Merci et à la prochaine!')
+	}
+
+	if (predicted_response[0] == 'oui') {
+
+		const want_qty = prompt(`Avez-vous besoin de combien de ${current_plat.name} ?`);
+		console.log(`Vous voulez ${Number(want_qty)} ${current_plat.name}(s)`)
+		plat_from_db = await db.getplatById(current_plat.id)
+		if ((plat_from_db.quantity <= 0)) {
+			console.log(`Nous n'avons plus de ${plat_from_db.name}!`)
+		} else if ((plat_from_db.quantity - Number(want_qty)) <= 0) {
+			console.log(`Nous n'avons pas suffisamment de ${plat_from_db.name} pour vous servir!`)
+		} else {
+			db.updatePlat(current_plat.id, plat_from_db.quantity - Number(want_qty))
+			if (Number(want_qty) == 1) {
+				console.log('Ok merci prennez votre plat!')
+			} else {
+				console.log('Ok merci prennez vos plats!')
+			}
+		}
+	}
+*/
 
 })()
