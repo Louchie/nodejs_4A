@@ -76,7 +76,7 @@ const db_recipes = require('./recipesModel');
 	let current_plat = null
 		// console.log('predicted_response', predicted_response)
 	for (plat of plats) {
-		if (plat.name == predicted_response[0]) {
+		if (plat.type_lunch == predicted_response[0]) {
 			console.log("Le type de repas est", repas['type_lunch'])
 			current_plat = plat 
 			break
@@ -85,7 +85,7 @@ const db_recipes = require('./recipesModel');
 	const type_lunch_taste = prompt("Voulez-vous mangez sucré ou salée?"); predicted_response = intentClassifiertaste.classify(type_lunch_taste);
 	let current_plat_taste = null
 	for (plat of plats) {
-		if (plat.name == predicted_response[0]) {
+		if (plat.taste == predicted_response[0]) {
 			console.log("Le type de repas est", repas['type_lunch'])
 			current_plat = plat 
 			break
@@ -94,7 +94,7 @@ const db_recipes = require('./recipesModel');
 	const type_lunch_number = prompt("Combien seriez-vous à manger ce plat ?"); predicted_response = intentClassifiernumber.classify(type_lunch_number);
 	let current_plat_number = null
 	for (plat of plats) {
-		if (plat.name == predicted_response[0]) {
+		if (plat.number_people  == predicted_response[0]) {
 			console.log("Le type de repas est", repas['type_lunch'])
 			current_plat = plat 
 			break
