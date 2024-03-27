@@ -29,7 +29,7 @@ const db_recipes = require('./recipesModel');
 
 	// Train and test:
 	intentClassifier.trainBatch([
-		{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
+				{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
 +               {input: "Je veux un ptit déj", output: "petit déjeuner"},
 +               {input: "Je veux un petit déj", output: "petit déjeuner"},
 +               {input: "Je veux un petit dej", output: "petit déjeuner"},
@@ -44,7 +44,6 @@ const db_recipes = require('./recipesModel');
 +               {input: "petit déjeuner", output: "petit déjeuner"},
 +               {input: "petit déj", output: "petit déjeuner"},
 +               {input: "petit dej", output: "petit déjeuner"},
-+
 +               {input: "Je veux un déjeuner", output: "déjeuner"},
 +               {input: "Je veux un dejeuner", output: "déjeuner"},
 +               {input: "Je veux un dejener", output: "déjeuner"},

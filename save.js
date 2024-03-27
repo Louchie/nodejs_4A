@@ -1,8 +1,8 @@
 // App.js - Utilisation des opérations CRUD avec Knex, initialisation de la BDD 
 //la base de donnée des
 
-const db = require('./platsModel');
-const db = require('./recipesModel');
+const db_plats = require('./platsModel');
+const db_recipes = require('./recipesModel');
 
 
 function getRandomInt(max) {
@@ -82,11 +82,11 @@ async function main() {
   }
 
   for (plat_name in plats) {
-    await db.createplat(plat_name, plats[plat_name].qty, plats[plat_name].price);
+    await db_plats.createplat(plat_name, plats[plat_name].qty, plats[plat_name].price);
   }
 
   // Read
-  const getAllplats = await db.getAllplats();
+  const getAllplats = await db_plats.getAllPlats();
   console.log('Tous les plats :', getAllplats);
 }
 
