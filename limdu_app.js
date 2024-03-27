@@ -1,13 +1,14 @@
 var limdu = require('limdu');
 const prompt = require("prompt-sync")({ sigint: true });
-const db = require('./platsModel');
-const db = require('./recipesModel');
+const db_plats = require('./platsModel');
+const db_recipes = require('./recipesModel');
 
 
 (async function() {
 
-	const plats = await db.getAllPlats()
-	console.log(plats)
+	const plats = await db.getAllPlats();
+    const recipes = await db.getAllRecipes()
+    console.log(plats, recipes)
 	// First, define our base classifier type (a multi-label classifier based on winnow):
 	var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {
 		binaryClassifierType: limdu.classifiers.Winnow.bind(0, {retrain_count: 10})
@@ -28,14 +29,30 @@ const db = require('./recipesModel');
 
 	// Train and test:
 	intentClassifier.trainBatch([
-		{input: "Je veux boire un barcadi", output: "barcadi"},
-		{input: "Je veux boire un barcad", output: "barcadi"},
-		{input: "Je veux une boisson de barcadir", output: "barcadi"},
-		{input: "J'aime du barcardi", output: "barcadi"},
-		{input: "Je veux boire un captain morgan", output: "captain_morgan"},
-		{input: "J'aime du captain morgan", output: "captain_morgan"},
-		{input: "Je veux boire un old nick", output: "old_nick"},
-		{input: "J'aime du old nick", output: "old_nick"},
+		{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
++               {input: "Je veux un ptit déj", output: "petit déjeuner"},
++               {input: "Je veux un petit déj", output: "petit déjeuner"},
++               {input: "Je veux un petit dej", output: "petit déjeuner"},
++               {input: "Je veux un ptit déjeuner", output: "petit déjeuner"},
++               {input: "Je veux un ptit dejeuner", output: "petit déjeuner"},
++               {input: "Je veux un ptit dej", output: "petit déjeuner"},
++               {input: "ptit dej", output: "petit déjeuner"},
++               {input: "ptit déj", output: "petit déjeuner"},
++               {input: "petit dej", output: "petit déjeuner"},
++               {input: "petit déj", output: "petit déjeuner"},
++               {input: "petit dejeuner", output: "petit déjeuner"},
++               {input: "petit déjeuner", output: "petit déjeuner"},
++               {input: "petit déj", output: "petit déjeuner"},
++               {input: "petit dej", output: "petit déjeuner"},
++
++               {input: "Je veux un déjeuner", output: "déjeuner"},
++               {input: "Je veux un dejeuner", output: "déjeuner"},
++               {input: "Je veux un dejener", output: "déjeuner"},
++               {input: "J'veux un dejeuner", output: "déjeuner"},
++               {input: "J'veux un déj", output: "déjeuner"},
++               {input: "Je veux un dejeuner", output: "déjeuner"},
++               {input: "dejeuner", output: "déjeuner"},
++               {input: "dej", output: "déjeuner"},
 	]);
 
 
@@ -60,14 +77,13 @@ const db = require('./recipesModel');
 
 
 	console.log('Bonjour')
-	const rhum_want = prompt("Pouvez-vous me dire le rhum que vous souhaitez (Nick, Barcardi, Morgan) possible ?");
-	predicted_response = intentClassifier.classify(rhum_want);
-
+	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); predicted_response = intentClassifier.classify(type_lunch_want);
 	let current_plat = null
+
 	// console.log('predicted_response', predicted_response)
 	for (plat of plats) {
 		if (plat.name == predicted_response[0]) {
-			console.log("La plat", plat['name'], "est de", plat['price'], " EUR")
+			console.log("Le type de repas est", repas['type_lunch'])
 			current_plat = plat 
 			break
 		}

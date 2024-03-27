@@ -3,7 +3,7 @@
 const knex = require('knex')(require('./knexfile')['development']);
 
 // Create
-async function createPlat(name, quantity, price) {
+async function createPlat(name, type_lunch, taste, number_people) {
   return await knex('plats').insert({ name, type_lunch, taste, number_people });
 }
 

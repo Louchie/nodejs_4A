@@ -26,8 +26,8 @@ async function createTable() {
 
 async function createTable() {
   try {
-    const exists = await knex.schema.hasTable('recettes');
-    if (!exists) {
+    const existsr = await knex.schema.hasTable('recettes');
+;    if (!existsr) {
       await knex.schema.createTable('recettes', table => {
         table.increments('id').primary();
         table.string('name');
