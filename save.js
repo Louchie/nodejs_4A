@@ -82,7 +82,12 @@ async function main() {
   }
 
   for (plat_name in plats) {
-    await db_plats.createplat(plat_name, plats[plat_name].qty, plats[plat_name].price);
+    await db_plats.createPlat(plat_name, plats[plat_name].type_lunch, plats[plat_name].taste, plats[plat_name].number_people);
+  }
+
+  // Créer les recettes
+  for (recipe_name in recipes) {
+    await db_recipes.createRecipe(recipe_name, recipes[recipe_name].steps);
   }
 
   // Read

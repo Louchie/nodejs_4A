@@ -1,8 +1,8 @@
-//Create table
+// Create table
 
 const knex = require('knex')(require('./knexfile')['development']);
 
-async function createTable() {
+async function createPlatsTable() {
   try {
     const exists = await knex.schema.hasTable('plats');
     if (!exists) {
@@ -18,17 +18,17 @@ async function createTable() {
       console.log('La table "plats" existe déjà.');
     }
   } catch (error) {
-    console.error('Erreur lors de la création de la table :', error);
+    console.error('Erreur lors de la création de la table "plats" :', error);
   } finally {
     await knex.destroy();
   }
 }
 
-async function createTable() {
+async function createRecettesTable() {
   try {
-    const existsr = await knex.schema.hasTable('recettes');
-;    if (!existsr) {
-      await knex.schema.createTable('recettes', table => {
+    const exists = await knex.schema.hasTable('recipes');
+    if (!exists) {
+      await knex.schema.createTable('recipes', table => {
         table.increments('id').primary();
         table.string('name');
         table.string('steps');
@@ -38,10 +38,12 @@ async function createTable() {
       console.log('La table "recettes" existe déjà.');
     }
   } catch (error) {
-    console.error('Erreur lors de la création de la table :', error);
+    console.error('Erreur lors de la création de la table "recettes" :', error);
   } finally {
     await knex.destroy();
   }
 }
 
-createTable();
+// Appel des fonctions pour créer les tables
+createPlatsTable();
+createRecettesTable();
