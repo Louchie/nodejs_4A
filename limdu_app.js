@@ -6,8 +6,8 @@ const db_recipes = require('./recipesModel');
 
 (async function() {
 
-	const plats = await db.getAllPlats();
-    const recipes = await db.getAllRecipes()
+	const plats = await db_plats.getAllPlats();
+    const recipes = await db_recipes.getAllRecipes()
     console.log(plats, recipes)
 	// First, define our base classifier type (a multi-label classifier based on winnow):
 	var TextClassifier = limdu.classifiers.multilabel.BinaryRelevance.bind(0, {
