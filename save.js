@@ -46,7 +46,19 @@ async function main() {
     'Salade de Fruits Frais':{ type_lunch:'dinner',taste:'salée',number_people:'4'},
   }
 
+<<<<<<< HEAD
   const recipes = {
+=======
+  for (plat_name in plats) {
+    await db_plats.createPlat(plat_name, plats[plat_name].type_lunch, plats[plat_name].taste,  plats[plat_name].number_people);
+  }
+
+  // Read
+  const getAllplats = await db_plats.getAllPlats();
+  console.log('Tous les plats :', getAllplats);
+
+  const recepes = {
+>>>>>>> ed421da30a0dfb42761f7a029bf373769f2f6ed3
     'Quiche Lorraine':{ steps:' Ingrédients 1 pâte brisée 200g de lardons fumés100g de gruyère râpé 3 œufs 20cl de crème fraîche 20cl de lait Sel, poivre, muscade Instructions :Préchauffez votre four à 180°C (thermostat 6).Étalez la pâte brisée dans un moule à tarte préalablement beurré et piquez le fond à l aide d une fourchette.Dans une poêle, faites revenir les lardons à feu moyen jusqu à ce qu ils soient dorés. Égouttez-les sur du papier absorbant pour enlever l excès de gras.Répartissez les lard'},
     'Bruschetta aux Tomates et à la Mozzarella':{ steps:'Ingrédients : 4 tranches de pain de campagne2 tomates mûres 1 boule de mozzarella 2 gousses d\'ail Huile d\'olive Basilic frais Sel, poivre Instructions : Préchauffez le four à 200°C. Frottez les tranches de pain avec de l\'ail et arrosez-les d\'huile d\'olive. Coupez les tomates et la mozzarella en tranches. Disposez les tranches de tomates et de mozzarella sur le pain. Assaisonnez avec du sel, du poivre et du basilic. Faites cuire au four pendant environ 10 minutes jusqu\'à ce que la mozzarella soit fondue.'},
     'Mini-Pizzas aux Légumes Grillés':{ steps:'Ingrédients : Mini-pâtes à pizza Sauce tomate Légumes grillés (aubergines, poivrons, courgettes) Fromage râpé Origan séché Huile d\'olive Sel, poivre Instructions : Préchauffez le four à 200°C. Étalez la sauce tomate sur les mini-pâtes à pizza. Disposez les légumes grillés sur la sauce. Saupoudrez de fromage râpé et d\'origan. Ajoutez un filet d\'huile d\'olive, du sel et du poivre. Faites cuire au four pendant environ 10-12 minutes.'},
@@ -81,13 +93,21 @@ async function main() {
     'Salade de Fruits Frais':{ steps:'dinner'},
   }
 
-  for (plat_name in plats) {
-    await db.createplat(plat_name, plats[plat_name].qty, plats[plat_name].price);
+  const recipes = {
+    'captain_morgan': { steps: 'hello'},
+    'barcadi': { steps: 'hello'},
+    'old_nick': { steps: 'hello'},
+  }
+
+  for (recipe_name in recipes) {
+    await db_recipes.createRecipe(recipe_name, plats[recipe_name].steps);
   }
 
   // Read
-  const getAllplats = await db.getAllplats();
-  console.log('Tous les plats :', getAllplats);
+  const getAllrecipes = await db_recipes.getAllRecipes();
+  console.log('Tous les plats :', getAllrecipes);
+
+
 }
 
 main().catch(err => console.error(err));
