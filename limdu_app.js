@@ -30,28 +30,15 @@ const db_recipes = require('./recipesModel');
 	// Train and test:
 	intentClassifier.trainBatch([
 				{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
-+               {input: "Je veux un ptit déj", output: "petit déjeuner"},
-+               {input: "Je veux un petit déj", output: "petit déjeuner"},
-+               {input: "Je veux un petit dej", output: "petit déjeuner"},
-+               {input: "Je veux un ptit déjeuner", output: "petit déjeuner"},
-+               {input: "Je veux un ptit dejeuner", output: "petit déjeuner"},
-+               {input: "Je veux un ptit dej", output: "petit déjeuner"},
-+               {input: "ptit dej", output: "petit déjeuner"},
-+               {input: "ptit déj", output: "petit déjeuner"},
-+               {input: "petit dej", output: "petit déjeuner"},
-+               {input: "petit déj", output: "petit déjeuner"},
-+               {input: "petit dejeuner", output: "petit déjeuner"},
-+               {input: "petit déjeuner", output: "petit déjeuner"},
-+               {input: "petit déj", output: "petit déjeuner"},
-+               {input: "petit dej", output: "petit déjeuner"},
-+               {input: "Je veux un déjeuner", output: "déjeuner"},
-+               {input: "Je veux un dejeuner", output: "déjeuner"},
-+               {input: "Je veux un dejener", output: "déjeuner"},
-+               {input: "J'veux un dejeuner", output: "déjeuner"},
-+               {input: "J'veux un déj", output: "déjeuner"},
-+               {input: "Je veux un dejeuner", output: "déjeuner"},
-+               {input: "dejeuner", output: "déjeuner"},
-+               {input: "dej", output: "déjeuner"},
+        
+{input: "Je veux un déjeuner", output: "déjeuner"},
++          
+
+{input: "Je veux un petit goûter", output: "goûter"},
+
+
+{input: "Je veux un petit dîner", output: "dîner"},
+    
 	]);
 
 
@@ -63,14 +50,8 @@ const db_recipes = require('./recipesModel');
 
 	// Train and test:
 	intentClassifierAccept.trainBatch([
-		{input: "Je veux bien cette boisson", output: "oui"},
-		{input: "Donne moi !", output: "oui"},
-		{input: "je prends", output: "oui"},
-		{input: "ok", output: "oui"},
-		{input: "je ne prends pas", output: "no"},
-		{input: "Non c'est trop chère", output: "non"},
-		{input: "Non je veux pas", output: "non"},
-		{input: "Non sait pas !", output: "non"},
+		{input: "je veux manger sucreé", output: "sucré"},
+		{input: "je veux manger salé", output: "salé"},
 	]);
 
 
