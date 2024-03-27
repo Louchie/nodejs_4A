@@ -29,15 +29,10 @@ const db_recipes = require('./recipesModel');
 
 	// Train and test:
 	intentClassifier.trainBatch([
-				{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
-        
-{input: "Je veux un déjeuner", output: "déjeuner"},
-+          
-
-{input: "Je veux un petit goûter", output: "goûter"},
-
-
-{input: "Je veux un petit dîner", output: "dîner"},
+		{input: "Je veux un petit déjeuner", output: "petit déjeuner"},
+        {input: "Je veux un déjeuner", output: "déjeuner"},
+        {input: "Je veux un petit goûter", output: "goûter"},
+		{input: "Je veux un petit dîner", output: "dîner"},
     
 	]);
 
@@ -53,6 +48,34 @@ const db_recipes = require('./recipesModel');
 		{input: "je veux manger sucreé", output: "sucré"},
 		{input: "je veux manger salé", output: "salé"},
 	]);
+
+
+	// Initialize a classifier with the base classifier type and the feature extractor:
+	var intentClassifiernumber = new limdu.classifiers.EnhancedClassifier({
+		classifierType: TextClassifier,
+		featureExtractor: WordExtractor
+	});
+
+	// Train and test:
+	intentClassifierAccept.trainBatch([
+		{input: "1", output: 2},
+		{input: "2", output: 2},
+		{input: "3", output: 4},
+		{input: "4", output: 4},
+		{input: "5", output: 6},
+		{input: "6", output: 6},
+		{input: "7", output: 8},
+		{input: "8", output: 8},
+		{input: 1, output: 2},
+		{input: 2, output: 2},
+		{input: 3, output: 4},
+		{input: 4, output: 4},
+		{input: 5, output: 6},
+		{input: 6, output: 6},
+		{input: 7, output: 8},
+		{input: 8, output: 8},
+	]);
+
 
 
 
