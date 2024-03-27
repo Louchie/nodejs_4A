@@ -46,7 +46,8 @@ const db_recipes = require('./recipesModel');
 	// Train and test:
 	intentClassifiertaste.trainBatch([
 		{input: "je veux manger sucreé", output: "sucré"},
-		{input: "je veux manger salé", output: "salé"},
+		{input: "je veux manger salé", output: "salée"},
+		{input: "je veux manger sale", output: "salée"},
 	]);
 
 
@@ -57,7 +58,7 @@ const db_recipes = require('./recipesModel');
 	});
 
 	// Train and test:
-	intentClassifierAcceptnumber.trainBatch([
+	intentClassifiernumber.trainBatch([
 		{input: "1", output: 2},
 		{input: "2", output: 2},
 		{input: "3", output: 4},
@@ -72,37 +73,33 @@ const db_recipes = require('./recipesModel');
 
 
 	console.log('Bonjour')
-	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); predicted_response = intentClassifier.classify(type_lunch_want);
-	let current_plat = null
-		// console.log('predicted_response', predicted_response)
-	for (plat of plats) {
-		if (plat.type_lunch == predicted_response[0]) {
-			console.log("Le type de repas est", repas['type_lunch'])
-			current_plat = plat 
-			break
-		}
-	}
-	const type_lunch_taste = prompt("Voulez-vous mangez sucré ou salée?"); predicted_response = intentClassifiertaste.classify(type_lunch_taste);
-	let current_plat_taste = null
-	for (plat of plats) {
-		if (plat.taste == predicted_response[0]) {
-			console.log("Le type de repas est", repas['type_lunch'])
-			current_plat = plat 
-			break
-		}
-	}
-	const type_lunch_number = prompt("Combien seriez-vous à manger ce plat ?"); predicted_response = intentClassifiernumber.classify(type_lunch_number);
+	const type_lunch_want = prompt("Pouvez-vous me dire quel type de repas vous souhaitez (petit dejeuner, dejeuner, goûter, dinner) si possible ?"); 
+	predicted_response1 = intentClassifier.classify(type_lunch_want);
+
+	const type_lunch_taste = prompt("Voulez-vous mangez sucré ou salée?"); 
+	predicted_response2 = intentClassifiertaste.classify(type_lunch_taste);
+
+	const type_lunch_number = prompt("Combien seriez-vous à manger ce plat ?"); 
+	predicted_response3 = intentClassifiernumber.classify(type_lunch_number);
 	let current_plat_number = null
+
+	console.log(predicted_response1,predicted_response2,predicted_response3)
+
 	for (plat of plats) {
-		if (plat.number_people  == predicted_response[0]) {
-			console.log("Le type de repas est", repas['type_lunch'])
+		if ((plat.number_people  == predicted_response3[0]) && (plat.taste == predicted_response2[0]) && (plat.type_lunch  == predicted_response1[0])) {
+			console.log("je vous conseil de faire à manger un/une ", plat.name)
 			current_plat = plat 
+			for (recipe of recipes) {
+				if (plat.name == recipe.name){
+					console.log(recipe.steps)
+					break
+				}
+			}
 			break
 		}
 	}
 
-
-
+	
 
 	/*
 
